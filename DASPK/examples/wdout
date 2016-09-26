@@ -1,0 +1,152 @@
+
+
+ Example program for DDASPK package
+
+ Food web problem with NS species, NS =   2
+ Predator-prey interaction and diffusion on a 2-D square
+
+ Matrix parameters..  a =  0.1000E+01   e =  0.1000E+05   g =  0.5000E-06
+                      b parameter =  0.1000E+01
+
+ Diffusion coefficients.. dprey =  0.1000E+01   dpred =  0.5000E-01
+
+ Rate parameters alpha =  0.5000E+02 and beta =  0.1000E+03
+
+ Mesh dimensions (MX,MY) =  20  20      Total system size is NEQ =    800
+
+ Tolerance parameters.. RTOL =  0.10E-04   ATOL =  0.10E-04
+
+ Internal I.C. calculation flag INFO(11) = 1   (0 = off, 1 = on)
+ Predator I.C. guess =  0.10E+06
+
+ Alternate error test flag INFO(16) = 1  (0 = off, 1 = on)
+
+
+................................................................................
+
+ Linear solver method flag INFO(12) = 0   (0 = direct, 1 = Krylov)
+
+ Difference-quotient banded Jacobian, half-bandwidths =  40
+
+
+   t       NSTEP  NRE  NNI  NLI  NPE  NQ    H          AVLIN
+  0.00E+00    0   252    6    0    3   0   0.10E-10   0.0000
+  0.10E-07   10   739   10    0    9   2   0.51E-08   0.0000
+  0.10E-06   14  1067   14    0   13   2   0.82E-07   0.0000
+  0.10E-05   17  1313   17    0   16   2   0.66E-06   0.0000
+  0.10E-04   20  1559   20    0   19   2   0.52E-05   0.0000
+  0.10E-03   24  1890   27    0   23   2   0.84E-04   0.0000
+  0.10E-02   31  1898   35    0   23   3   0.17E-03   0.0000
+  0.10E-01   52  2169   63    0   26   5   0.98E-03   0.0000
+  0.10E+00   87  2575  145    0   30   5   0.39E-02   0.0000
+  0.10E+01  122  3112  196    0   36   1   0.25E+00   0.0000
+  0.20E+01  124  3277  199    0   38   1   0.10E+01   0.0000
+  0.30E+01  125  3359  200    0   39   1   0.20E+01   0.0000
+  0.40E+01  125  3359  200    0   39   1   0.20E+01   0.0000
+  0.50E+01  126  3441  201    0   40   1   0.40E+01   0.0000
+  0.60E+01  126  3441  201    0   40   1   0.40E+01   0.0000
+  0.70E+01  126  3441  201    0   40   1   0.40E+01   0.0000
+  0.80E+01  126  3441  201    0   40   1   0.40E+01   0.0000
+  0.90E+01  127  3523  202    0   41   1   0.81E+01   0.0000
+  0.10E+02  127  3523  202    0   41   1   0.81E+01   0.0000
+
+
+ Final statistics for this run..
+ RWORK size =  104870   IWORK size =  1640
+ Number of time steps            =  127
+ Number of residual evaluations  = 3523
+ Number of Jac. or prec. evals.  =   41
+ Number of preconditioner solves =    0
+ Number of nonlinear iterations  =  202
+ Number of linear iterations     =    0
+ Average Krylov subspace dimension =  0.0000
+  0 nonlinear conv. failures,    0 linear conv. failures
+
+
+................................................................................
+
+ Linear solver method flag INFO(12) = 1   (0 = direct, 1 = Krylov)
+
+ Preconditioner flag is JPRE =  3
+  (1 = reaction factor A_R, 2 = spatial factor A_S, 3 = A_S*A_R, 4 = A_R*A_S )
+
+ No block-grouping in reaction factor
+
+
+   t       NSTEP  NRE  NNI  NLI  NPE  NQ    H          AVLIN
+  0.00E+00    0    15    3   10    1   1   0.10E-10   3.3333
+  0.10E-07   10    14   12    2    9   1   0.51E-08   0.1667
+  0.10E-06   14    18   16    2   13   1   0.82E-07   0.0000
+  0.10E-05   17    21   19    2   16   1   0.66E-06   0.0000
+  0.10E-04   20    28   24    4   19   1   0.52E-05   0.4000
+  0.10E-03   25    43   34    9   21   2   0.42E-04   0.5000
+  0.10E-02   34    70   52   18   22   3   0.17E-03   0.5000
+  0.10E-01   56   156   96   60   23   5   0.53E-03   0.9545
+  0.10E+00   92   291  168  123   27   5   0.76E-02   0.8750
+  0.10E+01  144   793  276  517   53   1   0.20E+00   3.6481
+  0.20E+01  146   802  278  524   55   1   0.79E+00   3.5000
+  0.30E+01  147   808  280  528   56   1   0.16E+01   2.0000
+  0.40E+01  148   811  282  529   57   1   0.31E+01   0.5000
+  0.50E+01  148   811  282  529   57   1   0.31E+01   0.0000
+  0.60E+01  148   811  282  529   57   1   0.31E+01   0.0000
+  0.70E+01  149   812  283  529   58   1   0.63E+01   0.0000
+  0.80E+01  149   812  283  529   58   1   0.63E+01   0.0000
+  0.90E+01  149   812  283  529   58   1   0.63E+01   0.0000
+  0.10E+02  149   812  283  529   58   1   0.63E+01   0.0000
+
+
+ Final statistics for this run..
+ RWORK size =   16891   IWORK size =  1640
+ Number of time steps            =  149
+ Number of residual evaluations  =  812
+ Number of Jac. or prec. evals.  =   58
+ Number of preconditioner solves =  812
+ Number of nonlinear iterations  =  283
+ Number of linear iterations     =  529
+ Average Krylov subspace dimension =  1.8693
+  7 nonlinear conv. failures,    7 linear conv. failures
+
+
+................................................................................
+
+ Linear solver method flag INFO(12) = 1   (0 = direct, 1 = Krylov)
+
+ Preconditioner flag is JPRE =  3
+  (1 = reaction factor A_R, 2 = spatial factor A_S, 3 = A_S*A_R, 4 = A_R*A_S )
+
+ Block-grouping in reaction factor
+ Number of groups =   25   (NGX by NGY, NGX =  5,  NGY =  5)
+
+
+   t       NSTEP  NRE  NNI  NLI  NPE  NQ    H          AVLIN
+  0.00E+00    0    18    3   13    1   1   0.10E-10   4.3333
+  0.10E-07   10    14   12    2    9   1   0.51E-08   0.1667
+  0.10E-06   14    18   16    2   13   1   0.82E-07   0.0000
+  0.10E-05   17    25   21    4   16   1   0.66E-06   0.4000
+  0.10E-04   20    32   26    6   19   1   0.52E-05   0.4000
+  0.10E-03   25    47   36   11   21   2   0.42E-04   0.5000
+  0.10E-02   34    75   54   21   22   3   0.17E-03   0.5556
+  0.10E-01   56   167   98   69   23   5   0.60E-03   1.0909
+  0.10E+00   99   383  184  199   26   5   0.48E-02   1.5116
+  0.10E+01  140   612  265  347   32   1   0.31E+00   1.8272
+  0.20E+01  142   618  268  350   34   1   0.12E+01   1.0000
+  0.30E+01  142   618  268  350   34   1   0.12E+01   0.0000
+  0.40E+01  143   619  269  350   35   1   0.25E+01   0.0000
+  0.50E+01  143   619  269  350   35   1   0.25E+01   0.0000
+  0.60E+01  144   622  271  351   36   1   0.49E+01   0.5000
+  0.70E+01  144   622  271  351   36   1   0.49E+01   0.0000
+  0.80E+01  144   622  271  351   36   1   0.49E+01   0.0000
+  0.90E+01  144   622  271  351   36   1   0.49E+01   0.0000
+  0.10E+02  144   622  271  351   36   1   0.49E+01   0.0000
+
+
+ Final statistics for this run..
+ RWORK size =   15391   IWORK size =   890
+ Number of time steps            =  144
+ Number of residual evaluations  =  622
+ Number of Jac. or prec. evals.  =   36
+ Number of preconditioner solves =  622
+ Number of nonlinear iterations  =  271
+ Number of linear iterations     =  351
+ Average Krylov subspace dimension =  1.2952
+  0 nonlinear conv. failures,    0 linear conv. failures
