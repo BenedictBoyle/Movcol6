@@ -1198,160 +1198,10 @@ CONTAINS
     u0 = (8.0d0/(dsqrt(2.0d0*pi)))*dexp(-x**2.0/2.0)
   END SUBROUTINE def_ic
 
-  SUBROUTINE ic_fill(neq,y)
-    IMPLICIT NONE
-    INTEGER, INTENT(IN) :: neq
-    REAL(kind=8), DIMENSION(neq), INTENT(INOUT) :: y
-    REAL(kind=8), DIMENSION(:), ALLOCATABLE :: coeff, xpart
-    INTEGER :: ii, jj, kk, dord, pord, n, npts
-
-    npts = (neq-1)/7
-    pord = 4
-
-    ! Left boundary
-    ! do jj = 1,3
-    !   dord = jj
-    !   n = dord + pord
-    !   ALLOCATE (coeff(1:n)) 
-    !   ALLOCATE (xpart(1:n))
-    !   do ii = 1,n
-    !     xpart(ii) = y(7*ii)
-    !   end do   
-
-    !   call differ_stencil(y(7),dord,pord,xpart,coeff)
-    !   do ii = 1,n
-    !     y(3+jj) = y(3+jj) + coeff(ii)*(y(7*(ii+1)-4))
-    !   end do
-    !   DEALLOCATE (coeff)
-    !   DEALLOCATE (xpart)
-    ! end do
-
-    ! Right boundary
-    do jj = 1,3
-      dord = jj
-      n = dord + pord
-      ALLOCATE (coeff(1:n)) 
-      ALLOCATE (xpart(1:n))
-      do ii = 1,n
-        xpart(ii) = y(7*(npts-n+ii))
-      end do   
-
-      call differ_stencil(y(7*npts),dord,pord,xpart,coeff)
-      do ii = 1,n
-        y(7*npts-4+jj) = y(7*npts-4+jj) + coeff(ii)*(y(7*(npts-n+ii)-4))
-      end do
-      DEALLOCATE (coeff)
-      DEALLOCATE (xpart)
-    end do
-
-    ! Right insert 1
-    do jj = 1,3
-      dord = jj
-      n = dord + pord
-      ALLOCATE (coeff(1:n)) 
-      ALLOCATE (xpart(1:n))
-      do ii = 1,n
-        xpart(ii) = y(7*(npts-n+ii))
-      end do   
-
-      call differ_stencil(y(7*(npts-1)),dord,pord,xpart,coeff)
-      do ii = 1,n
-        y(7*(npts-1)-4+jj) = y(7*(npts-1)-4+jj) + coeff(ii)*(y(7*(npts-n+ii)-4))
-      end do
-      DEALLOCATE (coeff)
-      DEALLOCATE (xpart)
-    end do
-
-    ! Right insert 2
-    do jj = 1,3
-      dord = jj
-      n = dord + pord
-      ALLOCATE (coeff(1:n)) 
-      ALLOCATE (xpart(1:n))
-      do ii = 1,n
-        xpart(ii) = y(7*(npts-n+ii))
-      end do   
-
-      call differ_stencil(y(7*(npts-2)),dord,pord,xpart,coeff)
-      do ii = 1,n
-        y(7*(npts-2)-4+jj) = y(7*(npts-2)-4+jj) + coeff(ii)*(y(7*(npts-n+ii)-4))
-      end do
-      DEALLOCATE (coeff)
-      DEALLOCATE (xpart)
-    end do
-
-    ! Right insert 3
-    do jj = 0,3
-      dord = jj
-      n = dord + pord
-      ALLOCATE (coeff(1:n)) 
-      ALLOCATE (xpart(1:n))
-      do ii = 1,n
-        xpart(ii) = y(7*(npts-n+ii))
-      end do   
-
-      call differ_stencil(y(7*(npts-3)),dord,pord,xpart,coeff)
-      do ii = 1,n
-        y(7*(npts-3)-4+jj) = y(7*(npts-3)-4+jj) + coeff(ii)*(y(7*(npts-n+ii)-4))
-      end do
-      DEALLOCATE (coeff)
-      DEALLOCATE (xpart)
-    end do
-
-    ! Right insert 4
-    do jj = 1,3
-      dord = jj
-      n = dord + pord
-      ALLOCATE (coeff(1:n)) 
-      ALLOCATE (xpart(1:n))
-      do ii = 1,n
-        xpart(ii) = y(7*(npts-n+ii))
-      end do   
-
-      call differ_stencil(y(7*(npts-4)),dord,pord,xpart,coeff)
-      do ii = 1,n
-        y(7*(npts-4)-4+jj) = y(7*(npts-4)-4+jj) + coeff(ii)*(y(7*(npts-n+ii)-4))
-      end do
-      DEALLOCATE (coeff)
-      DEALLOCATE (xpart)
-    end do
-
-    ! Mid region
-    do kk = 1,npts-5
-      do jj = 1,3
-        dord = jj
-        n = dord + pord
-        ALLOCATE (coeff(1:n)) 
-        ALLOCATE (xpart(1:n))
-        do ii = 1,n
-          if (kk-(n+1)/2+ii < 1) then
-            xpart(ii) = -y(7*(kk+(n+1)/2-ii))
-          else
-            xpart(ii) = y(7*(kk-(n+1)/2+ii))
-          end if
-        end do  
-
-        call differ_stencil(y(7*kk),dord,pord,xpart,coeff)
-        do ii = 1,n
-          if (kk-(n+1)/2+ii < 1) then
-            y(7*kk+jj-4) = y(7*kk+jj-4) + coeff(ii)*(y(7*(kk+(n+1)/2-ii)-4))
-          else
-            y(7*kk+jj-4) = y(7*kk+jj-4) + coeff(ii)*(y(7*(kk-(n+1)/2+ii)-4))
-          end if
-        end do
-        DEALLOCATE (coeff)
-        DEALLOCATE (xpart)
-      end do
-    end do
-
-  END SUBROUTINE ic_fill
-
-  SUBROUTINE def_pde(g,u,ux,uxx,uxxx,uxxxx,&
-       uxxxxx,uxxxxxx,rpar,ipar)
+  SUBROUTINE def_pde(g,u,ux,uxx,uxxx,uxxxx,uxxxxx,uxxxxxx,rpar,ipar)
     IMPLICIT NONE
     REAL(kind=8), INTENT(OUT) :: g
-    REAL(kind=8), INTENT(IN) :: u, ux, uxx, uxxx, uxxxx,&
-         uxxxxx, uxxxxxx
+    REAL(kind=8), INTENT(IN) :: u, ux, uxx, uxxx, uxxxx, uxxxxx, uxxxxxx
     INTEGER, DIMENSION(*), INTENT(IN) :: ipar
     REAL(kind=8), DIMENSION(*), INTENT(IN) :: rpar
     REAL(kind=8) :: p, delta
@@ -1362,8 +1212,7 @@ CONTAINS
     cons = ipar(7)
 
     if (cons == 0) then
-       g = ux*uxxxxx + u*uxxxxxx - 30*(u**4.0d0)*(ux**2.0d0) - &
-               6*(u**5.0d0)*uxx
+       g = ux*uxxxxx + u*uxxxxxx - 30*(u**4.0d0)*(ux**2.0d0) - 6*(u**5.0d0)*uxx
     elseif (cons == 1) then
        g = u*uxxxxx - 6.0d0*(u**5.0d0)*ux
     endif
@@ -1516,4 +1365,4 @@ CONTAINS
     delta(neq) = yprime(neq) - 1.0d0
   END SUBROUTINE residual_ic
 
-END MODULE TFEmod
+END MODULE movmod
