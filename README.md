@@ -6,7 +6,7 @@ This extends earlier software [Movcol](https://www.math.ku.edu/~huang/research/m
 
 Included for convenience is the DASPK package by Petzold et. al. availble directly [here](http://www.cs.ucsb.edu/~cse/software.html).
 
-This repository will be updated with the working routines when I have cleaned them up so as to be useable and my thesis has been accepted. A simple plotting routine in Python will also be included. 
+This repository contains a working core set of modules that can be manually edited to work with different equations, boundary conditions, monitor functions etc. though it may not be obvious where these changes need to be made. Having recently resurrected the codebase, I am of course shocked at the appauling, spaghettified nature of the code though it got me the results I needed at the time. I have plans to tidy up the code and provide a nice config-file interface for passing equations, parameters and so on in order that it may be more widely useful. A plotting function will also be provided when time allows. 
 
 
 [1] Huang, Weizhang(1-KS); Russell, Robert D.(3-SFR)

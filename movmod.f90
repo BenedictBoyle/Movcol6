@@ -1,5 +1,4 @@
 MODULE movmod
-        ! Program not compiled and run since RETURN statements removed from all subroutines
 CONTAINS
   SUBROUTINE shape_function(phi,j,k,s)
     ! Returns the Hermite interpolating polynomials on [0,1] and their 
@@ -841,7 +840,7 @@ CONTAINS
                   uxxxxxx,rpar,ipar)
 ! one of these plus the two following lines should be uncommented 
 ! to attempt to stabilize the problem
-             call upwinder(neq,ii,jj,y,yprime,u,vx,rpar)
+             ! call upwinder(neq,ii,jj,y,yprime,u,vx,rpar)
              ! call lower_order(neq,ii,jj,y,yprime,vx)
              xtau = yprime(7*ii) + points(jj)*htau
              utau = utau + (ux - vx)*xtau
@@ -860,10 +859,6 @@ CONTAINS
                   uxx,uxxx,uxxxx,uxxxxx,uxxxxxx,utau,rpar)
              call def_pde(g,u,ux,uxx,uxxx,uxxxx,uxxxxx,&
                   uxxxxxx,rpar,ipar)
-             ! call upwinder(neq,ii,jj,y,yprime,u,vx,rpar)
-             ! call lower_order(neq,ii,jj,y,yprime,vx)
-             ! xtau = yprime(7*ii) + points(jj)*htau
-             ! utau = utau + (ux - vx)*xtau
              if (jj < 4) then
                 delta(7*(ii-1)+3+jj) = h*utau/sund
              else
